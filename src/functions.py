@@ -3,7 +3,7 @@ from imutils.video import VideoStream
 from imutils import face_utils
 from threading import Thread
 import numpy as np
-# import playsound
+import playsound
 import argparse
 import imutils
 import time
@@ -14,6 +14,10 @@ import cv2
 # blink and then a second constant for the number of consecutive
 # frames the eye must be below the threshold for to set off the
 # alarm
+
+def sound_alarm(path):
+	# play an alarm sound
+	playsound.playsound(path)
 
 def eye_aspect_ratio(eye):
 	# compute the euclidean distances between the two sets of
@@ -106,11 +110,11 @@ def landmark_detection(args, EYE_AR_THRESH = 0.3, EYE_AR_CONSEC_FRAMES = 48):
 						# check to see if an alarm file was supplied,
 						# and if so, start a thread to have the alarm
 						# sound played in the background
-						# if (args[2] != ""):
-						# 	t = Thread(target=sound_alarm,
-						# 								args=(args[2],))
-						# 	t.deamon = True
-						# 	t.start()
+						if (args[2] != ""):
+							t = Thread(target=sound_alarm,
+														args=(args[2],))
+							t.deamon = True
+							t.start()
 
 					# draw an alarm on the frame
 					cv2.putText(frame, "DROWSINESS ALERT!", (10, 30),
