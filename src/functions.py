@@ -3,7 +3,7 @@ from imutils.video import VideoStream
 from imutils import face_utils
 from threading import Thread
 import numpy as np
-import playsound
+# import playsound
 import argparse
 import imutils
 import time
@@ -110,11 +110,11 @@ def landmark_detection(args, EYE_AR_THRESH = 0.3, EYE_AR_CONSEC_FRAMES = 48):
 						# check to see if an alarm file was supplied,
 						# and if so, start a thread to have the alarm
 						# sound played in the background
-						if (args[2] != ""):
-							t = Thread(target=sound_alarm,
-														args=(args[2],))
-							t.deamon = True
-							t.start()
+						# if (args[2] != ""):
+						# 	t = Thread(target=sound_alarm,
+						# 								args=(args[2],))
+						# 	t.deamon = True
+						# 	t.start()
 
 					# draw an alarm on the frame
 					cv2.putText(frame, "DROWSINESS ALERT!", (10, 30),
